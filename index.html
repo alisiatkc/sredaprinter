@@ -1,1 +1,675 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>PICASO FDM | Промышленный 3D принтер</title>
+    <!-- Подключаем современный шрифт "Inter" и "Space Grotesk" для модного акцента -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Swiper CSS (слайдер) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- Font Awesome 6 (иконки) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            background-color: #0a0c10;
+            font-family: 'Inter', sans-serif;
+            color: #eef2ff;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* Кастомный скролл */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #101218;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3b3f5c;
+            border-radius: 8px;
+        }
+
+        /* Типографика */
+        h1, h2, h3, .logo, .nav-links a, .btn {
+            font-family: 'Space Grotesk', monospace;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff, #a0a8ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .section-sub {
+            color: #a0a5c0;
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
+            font-size: 1.1rem;
+        }
+
+        /* Навигация */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 12, 16, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(72, 85, 106, 0.3);
+            transition: 0.3s;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(130deg, #ffffff, #6c63ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .logo span {
+            font-size: 1rem;
+            background: none;
+            -webkit-background-clip: unset;
+            color: #6c63ff;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #cfd9ff;
+            font-weight: 500;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #ffffff;
+            text-shadow: 0 0 6px #6c63ff;
+        }
+        .menu-icon {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        /* Главный герой */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 6rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-content {
+            flex: 1;
+            z-index: 2;
+        }
+        .hero h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+        .hero-gradient-text {
+            background: linear-gradient(135deg, #f0f3ff, #7d72ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin: 1.5rem 0;
+            color: #b9c0e0;
+            max-width: 550px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 0.9rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary {
+            background: linear-gradient(95deg, #6c63ff, #3b32b0);
+            color: white;
+            box-shadow: 0 6px 14px rgba(108, 99, 255, 0.3);
+        }
+        .btn-primary:hover {
+            transform: scale(1.02);
+            background: linear-gradient(95deg, #7d72ff, #4a40c0);
+            box-shadow: 0 8px 20px rgba(108, 99, 255, 0.5);
+        }
+        .btn-outline {
+            border: 1px solid #6c63ff;
+            color: #cfd9ff;
+        }
+        .btn-outline:hover {
+            background: rgba(108, 99, 255, 0.1);
+            border-color: #a49eff;
+        }
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.6));
+        }
+        .hero-image img {
+            max-width: 100%;
+            width: 420px;
+            animation: float 5s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Секции общие */
+        section {
+            padding: 5rem 2rem;
+        }
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        .text-center {
+            text-align: center;
+        }
+
+        /* Характеристики сетка */
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .spec-card {
+            background: rgba(20, 22, 36, 0.7);
+            backdrop-filter: blur(4px);
+            border-radius: 32px;
+            padding: 2rem 1.5rem;
+            border: 1px solid rgba(108, 99, 255, 0.25);
+            transition: 0.25s;
+            text-align: center;
+        }
+        .spec-card i {
+            font-size: 2.5rem;
+            color: #6c63ff;
+            margin-bottom: 1rem;
+        }
+        .spec-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+        }
+        .spec-card p {
+            color: #9ca3c7;
+        }
+        .spec-card:hover {
+            transform: translateY(-6px);
+            border-color: #6c63ff;
+            background: rgba(30, 32, 50, 0.8);
+        }
+
+        /* Слайдер преимуществ */
+        .slider-section {
+            background: #05070c;
+            border-radius: 48px;
+            margin: 1rem 0;
+        }
+        .swiper {
+            width: 100%;
+            padding: 2rem 0 3rem 0;
+        }
+        .swiper-slide {
+            background: #10121e;
+            border-radius: 32px;
+            padding: 2rem;
+            text-align: center;
+            transition: 0.2s;
+            border: 1px solid #2a2d44;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
+        }
+        .swiper-slide i {
+            font-size: 3rem;
+            color: #6c63ff;
+            margin-bottom: 1rem;
+        }
+        .swiper-slide h3 {
+            font-size: 1.7rem;
+            margin-bottom: 0.8rem;
+        }
+        .swiper-slide p {
+            color: #b7bde2;
+            line-height: 1.4;
+        }
+        .swiper-pagination-bullet {
+            background: #6c63ff;
+        }
+        .swiper-button-next, .swiper-button-prev {
+            color: #a49eff;
+        }
+
+        /* Технологии / видео-секция */
+        .tech-showcase {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            align-items: center;
+        }
+        .tech-text {
+            flex: 1;
+        }
+        .tech-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .tech-badge {
+            background: #1f2237;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            display: inline-block;
+            font-size: 0.8rem;
+            color: #a79eff;
+        }
+        .tech-image {
+            flex: 1;
+            background: linear-gradient(145deg, #0f111c, #07090f);
+            border-radius: 40px;
+            padding: 2rem;
+            text-align: center;
+        }
+        .tech-image i {
+            font-size: 7rem;
+            color: #6c63ff;
+        }
+
+        /* CTA */
+        .cta {
+            background: radial-gradient(circle at 10% 20%, #181b2f, #020308);
+            border-radius: 48px;
+            text-align: center;
+            padding: 3rem;
+        }
+
+        footer {
+            border-top: 1px solid #1e2132;
+            padding: 2rem;
+            text-align: center;
+            color: #6f759b;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .btn-group {
+                justify-content: center;
+            }
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 70%;
+                height: calc(100vh - 70px);
+                background: #0b0e17cc;
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem;
+                transition: 0.3s;
+                gap: 1.8rem;
+                border-right: 1px solid #6c63ff66;
+            }
+            .nav-links.active {
+                left: 0;
+            }
+            .menu-icon {
+                display: block;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">PICASO<span> FDM</span></div>
+    <div class="menu-icon" id="menuToggle">
+        <i class="fas fa-bars"></i>
+    </div>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="nav-link">Главная</a></li>
+        <li><a href="#specs" class="nav-link">Характеристики</a></li>
+        <li><a href="#advantages" class="nav-link">Преимущества</a></li>
+        <li><a href="#tech" class="nav-link">Технологии</a></li>
+        <li><a href="#contact" class="nav-link">Контакты</a></li>
+    </ul>
+</nav>
+
+<!-- Hero / Главная -->
+<section id="home" class="hero">
+    <div class="hero-content">
+        <h1>Печать будущего <br><span class="hero-gradient-text">PICASO FDM</span></h1>
+        <p>Промышленный 3D принтер с высочайшей точностью, интеллектуальной системой подачи filament и полным контролем процесса. Создавайте детали уровня производства.</p>
+        <div class="btn-group">
+            <a href="#advantages" class="btn btn-primary"><i class="fas fa-arrow-right"></i> Изучить возможности</a>
+            <a href="#contact" class="btn btn-outline"><i class="fas fa-headset"></i> Связаться</a>
+        </div>
+    </div>
+    <div class="hero-image">
+        <!-- Изображение принтера (стилизованная иконка/модель) -->
+        <img src="https://cdn-icons-png.flaticon.com/512/4188/4188961.png" alt="PICASO 3D Printer" style="filter: brightness(0.9) contrast(1.1);">
+    </div>
+</section>
+
+<!-- Характеристики -->
+<section id="specs">
+    <div class="container text-center">
+        <h2 class="section-title">Техническое совершенство</h2>
+        <div class="section-sub">PICASO FDM — инженерный класс, надежность и инновации</div>
+        <div class="specs-grid">
+            <div class="spec-card">
+                <i class="fas fa-cube"></i>
+                <h3>300x300x350 мм</h3>
+                <p>Область построения для крупных деталей</p>
+            </div>
+            <div class="spec-card">
+                <i class="fas fa-temperature-high"></i>
+                <h3>до 300°C</h3>
+                <p>Экструдер с высокотемпературной насадкой</p>
+            </div>
+            <div class="spec-card">
+                <i class="fas fa-microchip"></i>
+                <h3>32-бит + WiFi</h3>
+                <p>Управление через облако и удаленная печать</p>
+            </div>
+            <div class="spec-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>±0.05 мм</h3>
+                <p>Точность позиционирования</p>
+            </div>
+            <div class="spec-card">
+                <i class="fas fa-fan"></i>
+                <h3>HEPA фильтрация</h3>
+                <p>Закрытая камера с контролем запахов</p>
+            </div>
+            <div class="spec-card">
+                <i class="fas fa-sd-card"></i>
+                <h3>Мультифиламент</h3>
+                <p>PLA, ABS, PETG, PC, нейлон</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Слайдер преимуществ (модный формат) -->
+<section id="advantages">
+    <div class="container text-center">
+        <h2 class="section-title">Ключевые преимущества</h2>
+        <div class="section-sub">Почему PICASO FDM выбирают инженеры и дизайнеры по всему миру</div>
+    </div>
+    <div class="container slider-section" style="background: transparent;">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <i class="fas fa-brain"></i>
+                    <h3>Интеллектуальная калибровка</h3>
+                    <p>Автоматическое выравнивание стола и сенсор первой печати — 100% успешных стартов.</p>
+                </div>
+                <div class="swiper-slide">
+                    <i class="fas fa-wifi"></i>
+                    <h3>Умный мониторинг</h3>
+                    <p>Камера высокого разрешения + мобильное приложение. Контролируйте печать из любой точки.</p>
+                </div>
+                <div class="swiper-slide">
+                    <i class="fas fa-layer-group"></i>
+                    <h3>Высокая скорость</h3>
+                    <p>До 200 мм/с без потери качества, благодаря жесткой раме и 32-бит логике.</p>
+                </div>
+                <div class="swiper-slide">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Прочная конструкция</h3>
+                    <p>Алюминиевые профили, закаленные направляющие — надежность на годы.</p>
+                </div>
+                <div class="swiper-slide">
+                    <i class="fas fa-plug"></i>
+                    <h3>Экосистема PICASO</h3>
+                    <p>ПО для слайсинга с AI-поддержкой и библиотека готовых профилей.</p>
+                </div>
+                <div class="swiper-slide">
+                    <i class="fas fa-cogs"></i>
+                    <h3>Замена сопел за секунды</h3>
+                    <p>Быстросъемный хотэнд для разных диаметров (0.2 – 1.0 мм).</p>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Технологии и инновации -->
+<section id="tech">
+    <div class="container tech-showcase">
+        <div class="tech-text">
+            <span class="tech-badge"><i class="fas fa-microchip"></i> Новое поколение FDM</span>
+            <h3>Печать без компромиссов</h3>
+            <p>PICASO FDM оснащен запатентованной системой линейных направляющих HIWIN, dual Z-осью и мощным вентилятором обдува деталей. <br><br>Автоматический детектор окончания филамента, возобновление печати после отключения питания и сенсорный экран 7 дюймов делают работу максимально удобной.</p>
+            <div class="btn-group" style="margin-top: 1.5rem;">
+                <a href="#" class="btn btn-outline"><i class="fab fa-youtube"></i> Смотреть обзор</a>
+            </div>
+        </div>
+        <div class="tech-image">
+            <i class="fas fa-3d-printing"></i>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">Точность до 50 микрон</p>
+            <div style="display: flex; justify-content: center; gap: 20px; margin-top: 1rem;">
+                <i class="fas fa-certificate" style="font-size: 2rem;"></i>
+                <i class="fas fa-industry" style="font-size: 2rem;"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Контакты и форма связи -->
+<section id="contact">
+    <div class="container">
+        <div class="cta">
+            <h2 style="font-size: 2rem;">Готовы вывести производство на новый уровень?</h2>
+            <p style="margin: 1rem 0; color: #b7bde2;">Оставьте заявку — получите коммерческое предложение и консультацию инженера.</p>
+            <form id="contactForm" style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; max-width: 600px; margin: 2rem auto 0;">
+                <input type="text" placeholder="Ваше имя" required style="flex:1; min-width: 180px; padding: 1rem; border-radius: 48px; border: none; background: #1a1d2f; color: white; outline: none;">
+                <input type="email" placeholder="Email" required style="flex:1; min-width: 200px; padding: 1rem; border-radius: 48px; border: none; background: #1a1d2f; color: white; outline: none;">
+                <button type="submit" class="btn btn-primary" style="border: none; cursor: pointer;"><i class="fas fa-paper-plane"></i> Отправить</button>
+            </form>
+            <div id="formMessage" style="margin-top: 1rem; font-size: 0.9rem;"></div>
+            <div style="margin-top: 2rem; display: flex; gap: 2rem; justify-content: center; font-size: 1.5rem;">
+                <i class="fab fa-telegram"></i>
+                <i class="fab fa-whatsapp"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-youtube"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2025 PICASO FDM — Инновационные 3D технологии. Все права защищены.</p>
+    <p style="margin-top: 0.5rem;"><i class="fas fa-print"></i> Сделано для инженеров будущего</p>
+</footer>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    // Инициализация слайдера Swiper
+    const swiper = new Swiper('.mySwiper', {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: true,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 25,
+            },
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 30,
+            },
+        },
+        autoplay: {
+            delay: 4000,
+            disableOnInteraction: false,
+        },
+    });
+
+    // Мобильное меню
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    const navLinkItems = document.querySelectorAll('.nav-link');
+
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        // иконка смена (для красоты)
+        const icon = menuToggle.querySelector('i');
+        if (navLinks.classList.contains('active')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+        } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+    });
+
+    // Закрывать меню при клике на ссылку
+    navLinkItems.forEach(link => {
+        link.addEventListener('click', (e) => {
+            navLinks.classList.remove('active');
+            const icon = menuToggle.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+            // Активная ссылка подсветка
+            navLinkItems.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+        });
+    });
+
+    // Плавный скролл для якорей + подсветка активного пункта при скролле
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href === "#" || href === "") return;
+            const target = document.querySelector(href);
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // обновить url без резкого прыжка
+                history.pushState(null, null, href);
+            }
+        });
+    });
+
+    // Подсветка навигации при скролле
+    const sections = document.querySelectorAll('section, .hero');
+    window.addEventListener('scroll', () => {
+        let current = '';
+        const scrollPos = window.scrollY + 120;
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                current = section.getAttribute('id');
+            }
+        });
+        navLinkItems.forEach(link => {
+            link.classList.remove('active');
+            const href = link.getAttribute('href').substring(1);
+            if (href === current) {
+                link.classList.add('active');
+            }
+        });
+        if (current === '') {
+            // если в самом верху (home)
+            if (window.scrollY < 100) {
+                document.querySelector('.nav-link[href="#home"]').classList.add('active');
+            }
+        }
+    });
+
+    // Простая отправка формы (имитация)
+    const contactForm = document.getElementById('contactForm');
+    const formMessage = document.getElementById('formMessage');
+    if(contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            formMessage.innerHTML = '<i class="fas fa-check-circle"></i> Спасибо! Наш менеджер свяжется с вами в ближайшее время.';
+            formMessage.style.color = '#a3ffb3';
+            contactForm.reset();
+            setTimeout(() => {
+                formMessage.innerHTML = '';
+            }, 5000);
+        });
+    }
+
+    // Небольшой эффект появления при загрузке
+    window.addEventListener('load', () => {
+        document.body.style.opacity = '0';
+        document.body.style.transition = 'opacity 0.5s ease';
+        document.body.style.opacity = '1';
+    });
+    document.body.style.opacity = '1';
+</script>
+</body>
+</html>
