@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PICASO FDM | Секретная пасхалка 🤫</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;800&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0c10 0%, #1a0f1a 100%);
+            font-family: 'Inter', sans-serif;
+            color: #f0e6ff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* конфетти-эффект фон */
+        .confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .joke-container {
+            max-width: 800px;
+            background: rgba(15, 12, 25, 0.75);
+            backdrop-filter: blur(16px);
+            border-radius: 64px;
+            padding: 3rem 2rem;
+            text-align: center;
+            border: 2px solid #ffd966;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.5), 0 0 30px rgba(255, 200, 100, 0.3);
+            z-index: 2;
+            animation: wobble 0.6s ease-out;
+        }
+
+        @keyframes wobble {
+            0% { transform: scale(0.8) rotate(-2deg); opacity: 0; }
+            60% { transform: scale(1.02) rotate(1deg); }
+            100% { transform: scale(1) rotate(0); opacity: 1; }
+        }
+
+        h1 {
+            font-family: 'Space Grotesk', monospace;
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, #FFD966, #FFA559);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .emoji-big {
+            font-size: 5rem;
+            margin: 1rem 0;
+            animation: bounce 1.5s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .joke-text {
+            font-size: 1.4rem;
+            line-height: 1.5;
+            margin: 2rem 0;
+            background: #1f1b2e;
+            padding: 1.5rem;
+            border-radius: 48px;
+            border-left: 6px solid #ffb347;
+        }
+
+        .features-joke {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .joke-card {
+            background: #1e1a2f;
+            padding: 1rem 1.5rem;
+            border-radius: 60px;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid #ffb347;
+            transition: 0.2s;
+        }
+
+        .joke-card i {
+            font-size: 1.6rem;
+            color: #ffb347;
+        }
+
+        .joke-card:hover {
+            transform: scale(1.05);
+            background: #ffb34722;
+            border-color: #ffd966;
+        }
+
+        .btn-back {
+            background: #6c63ff;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.2s;
+            margin-top: 1rem;
+        }
+
+        .btn-back:hover {
+            background: #8a82ff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px #6c63ff66;
+        }
+
+        .footer-joke {
+            margin-top: 3rem;
+            font-size: 0.8rem;
+            opacity: 0.6;
+            z-index: 2;
+        }
+
+        @media (max-width: 600px) {
+            .joke-container { padding: 2rem 1rem; }
+            h1 { font-size: 2rem; }
+            .joke-text { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="confetti" id="confettiCanvas"></div>
+
+    <div class="joke-container">
+        <div class="emoji-big">
+            🎉🤪🖨️
+        </div>
+        <h1>Секретная лаборатория PICASO</h1>
+        <div class="joke-text">
+            <i class="fas fa-quote-left" style="margin-right: 8px; color: #ffb347;"></i>
+            На самом деле PICASO FDM умеет печатать не только детали, но и <strong>пиццу</strong> (если заменить филамент на тесто), 
+            а еще однажды принтер напечатал самого себя и сбежал на кофе-брейк. 
+            <i class="fas fa-quote-right" style="margin-left: 8px; color: #ffb347;"></i>
+        </div>
+
+        <div class="features-joke">
+            <div class="joke-card"><i class="fas fa-pizza-slice"></i> Режим "Пицца 3D"</div>
+            <div class="joke-card"><i class="fas fa-cat"></i> Печать котов (осторожно, мяукают)</div>
+            <div class="joke-card"><i class="fas fa-mug-hot"></i> Встроенная кофемашина</div>
+            <div class="joke-card"><i class="fas fa-dice-d6"></i> Генератор случайных шуток</div>
+        </div>
+
+        <div class="joke-text" style="background: #2a1e2e;">
+            🤣 <strong>Анекдот дня:</strong> Почему 3D-принтер не ходит на свидания? <br>
+            — Потому что он боится, что его отвергнут из-за низкого слоя прилипания! 😆
+        </div>
+
+        <div class="features-joke">
+            <div class="joke-card"><i class="fas fa-tachometer-alt"></i> Скорость шутки: 3000 смехов/мин</div>
+            <div class="joke-card"><i class="fas fa-microchip"></i> Процессор юмора Gen2</div>
+        </div>
+
+        <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Вернуться в реальность (к PICASO FDM)</a>
+        <div class="footer-joke">
+            ⚠️ Внимание! Данная страница не несёт серьёзной технической информации, только хорошее настроение.
+        </div>
+    </div>
+
+    <script>
+        // Простой эффект конфетти (canvas)
+        function createConfetti() {
+            const canvas = document.getElementById('confettiCanvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            let particles = [];
+            const colors = ['#ffd966', '#ffa559', '#6c63ff', '#ff6b6b', '#4ecdc4'];
+
+            for (let i = 0; i < 150; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    size: Math.random() * 8 + 3,
+                    speedY: Math.random() * 3 + 2,
+                    speedX: (Math.random() - 0.5) * 1.5,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    rotation: Math.random() * 360,
+                    rotSpeed: (Math.random() - 0.5) * 6
+                });
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                let allAlive = false;
+                for (let i = 0; i < particles.length; i++) {
+                    const p = particles[i];
+                    ctx.save();
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate(p.rotation * Math.PI / 180);
+                    ctx.fillStyle = p.color;
+                    ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
+                    ctx.restore();
+
+                    p.y += p.speedY;
+                    p.x += p.speedX;
+                    p.rotation += p.rotSpeed;
+                    if (p.y < canvas.height + 50) allAlive = true;
+                }
+                particles = particles.filter(p => p.y < canvas.height + 100);
+                if (particles.length === 0) return;
+                requestAnimationFrame(draw);
+            }
+            draw();
+        }
+
+        window.addEventListener('resize', () => {
+            const canvas = document.getElementById('confettiCanvas');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            createConfetti(); 
+        });
+        createConfetti();
+
+        // Добавляем пару рандомных шуток в консоль
+        console.log("%c🖨️ PICASO FDM говорит: 'Я печатаю не только пластик, но и улыбки!'", "color: #ffb347; font-size: 16px");
+    </script>
+</body>
+</html>
