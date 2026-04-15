@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>PICASO FDM | Промышленный 3D принтер</title>
-    <!-- Подключаем современный шрифт "Inter" и "Space Grotesk" для модного акцента -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
-    <!-- Swiper CSS (слайдер) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <!-- Font Awesome 6 (иконки) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -25,7 +22,6 @@
             overflow-x: hidden;
         }
 
-        /* Кастомный скролл */
         ::-webkit-scrollbar {
             width: 6px;
         }
@@ -37,7 +33,6 @@
             border-radius: 8px;
         }
 
-        /* Типографика */
         h1, h2, h3, .logo, .nav-links a, .btn {
             font-family: 'Space Grotesk', monospace;
             font-weight: 500;
@@ -62,7 +57,6 @@
             font-size: 1.1rem;
         }
 
-        /* Навигация */
         nav {
             position: fixed;
             top: 0;
@@ -86,12 +80,6 @@
             background-clip: text;
             color: transparent;
         }
-        .logo span {
-            font-size: 1rem;
-            background: none;
-            -webkit-background-clip: unset;
-            color: #6c63ff;
-        }
         .nav-links {
             display: flex;
             gap: 2rem;
@@ -104,9 +92,19 @@
             transition: 0.2s;
             font-size: 1rem;
         }
-        .nav-links a:hover, .nav-links a.active {
+        .nav-links a:hover {
             color: #ffffff;
             text-shadow: 0 0 6px #6c63ff;
+        }
+        .joke-link {
+            background: rgba(108, 99, 255, 0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 40px;
+            border: 1px solid #6c63ff;
+        }
+        .joke-link:hover {
+            background: #6c63ff;
+            color: white !important;
         }
         .menu-icon {
             display: none;
@@ -114,7 +112,6 @@
             cursor: pointer;
         }
 
-        /* Главный герой */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -194,7 +191,6 @@
             100% { transform: translateY(0px); }
         }
 
-        /* Секции общие */
         section {
             padding: 5rem 2rem;
         }
@@ -206,7 +202,6 @@
             text-align: center;
         }
 
-        /* Характеристики сетка */
         .specs-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -240,7 +235,6 @@
             background: rgba(30, 32, 50, 0.8);
         }
 
-        /* Слайдер преимуществ */
         .slider-section {
             background: #05070c;
             border-radius: 48px;
@@ -279,7 +273,6 @@
             color: #a49eff;
         }
 
-        /* Технологии / видео-секция */
         .tech-showcase {
             display: flex;
             flex-wrap: wrap;
@@ -313,7 +306,6 @@
             color: #6c63ff;
         }
 
-        /* CTA */
         .cta {
             background: radial-gradient(circle at 10% 20%, #181b2f, #020308);
             border-radius: 48px;
@@ -328,7 +320,6 @@
             color: #6f759b;
         }
 
-        /* Responsive */
         @media (max-width: 900px) {
             .hero {
                 flex-direction: column;
@@ -383,15 +374,15 @@
         <i class="fas fa-bars"></i>
     </div>
     <ul class="nav-links" id="navLinks">
-        <li><a href="#home" class="nav-link">Главная</a></li>
-        <li><a href="#specs" class="nav-link">Характеристики</a></li>
-        <li><a href="#advantages" class="nav-link">Преимущества</a></li>
-        <li><a href="#tech" class="nav-link">Технологии</a></li>
-        <li><a href="#contact" class="nav-link">Контакты</a></li>
+        <li><a href="#home">Главная</a></li>
+        <li><a href="#specs">Характеристики</a></li>
+        <li><a href="#advantages">Преимущества</a></li>
+        <li><a href="#tech">Технологии</a></li>
+        <li><a href="#contact">Контакты</a></li>
+        <li><a href="joke-page.html" class="joke-link"><i class="fas fa-grin-tongue-squint"></i> Секретная страница</a></li>
     </ul>
 </nav>
 
-<!-- Hero / Главная -->
 <section id="home" class="hero">
     <div class="hero-content">
         <h1>Печать будущего <br><span class="hero-gradient-text">PICASO FDM</span></h1>
@@ -402,52 +393,25 @@
         </div>
     </div>
     <div class="hero-image">
-        <!-- Изображение принтера (стилизованная иконка/модель) -->
-        <img src="photochki/Тема 245.png" alt="PICASO 3D Printer" style="filter: brightness(0.9) contrast(1.1);">
+        <img src="https://cdn-icons-png.flaticon.com/512/4188/4188961.png" alt="PICASO 3D Printer" style="filter: brightness(0.9) contrast(1.1);">
     </div>
 </section>
 
-<!-- Характеристики -->
 <section id="specs">
     <div class="container text-center">
         <h2 class="section-title">Техническое совершенство</h2>
         <div class="section-sub">PICASO FDM — инженерный класс, надежность и инновации</div>
         <div class="specs-grid">
-            <div class="spec-card">
-                <i class="fas fa-cube"></i>
-                <h3>300x300x350 мм</h3>
-                <p>Область построения для крупных деталей</p>
-            </div>
-            <div class="spec-card">
-                <i class="fas fa-temperature-high"></i>
-                <h3>до 300°C</h3>
-                <p>Экструдер с высокотемпературной насадкой</p>
-            </div>
-            <div class="spec-card">
-                <i class="fas fa-microchip"></i>
-                <h3>32-бит + WiFi</h3>
-                <p>Управление через облако и удаленная печать</p>
-            </div>
-            <div class="spec-card">
-                <i class="fas fa-chart-line"></i>
-                <h3>±0.05 мм</h3>
-                <p>Точность позиционирования</p>
-            </div>
-            <div class="spec-card">
-                <i class="fas fa-fan"></i>
-                <h3>HEPA фильтрация</h3>
-                <p>Закрытая камера с контролем запахов</p>
-            </div>
-            <div class="spec-card">
-                <i class="fas fa-sd-card"></i>
-                <h3>Мультифиламент</h3>
-                <p>PLA, ABS, PETG, PC, нейлон</p>
-            </div>
+            <div class="spec-card"><i class="fas fa-cube"></i><h3>300x300x350 мм</h3><p>Область построения для крупных деталей</p></div>
+            <div class="spec-card"><i class="fas fa-temperature-high"></i><h3>до 300°C</h3><p>Экструдер с высокотемпературной насадкой</p></div>
+            <div class="spec-card"><i class="fas fa-microchip"></i><h3>32-бит + WiFi</h3><p>Управление через облако и удаленная печать</p></div>
+            <div class="spec-card"><i class="fas fa-chart-line"></i><h3>±0.05 мм</h3><p>Точность позиционирования</p></div>
+            <div class="spec-card"><i class="fas fa-fan"></i><h3>HEPA фильтрация</h3><p>Закрытая камера с контролем запахов</p></div>
+            <div class="spec-card"><i class="fas fa-sd-card"></i><h3>Мультифиламент</h3><p>PLA, ABS, PETG, PC, нейлон</p></div>
         </div>
     </div>
 </section>
 
-<!-- Слайдер преимуществ (модный формат) -->
 <section id="advantages">
     <div class="container text-center">
         <h2 class="section-title">Ключевые преимущества</h2>
@@ -456,36 +420,12 @@
     <div class="container slider-section" style="background: transparent;">
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <i class="fas fa-brain"></i>
-                    <h3>Интеллектуальная калибровка</h3>
-                    <p>Автоматическое выравнивание стола и сенсор первой печати — 100% успешных стартов.</p>
-                </div>
-                <div class="swiper-slide">
-                    <i class="fas fa-wifi"></i>
-                    <h3>Умный мониторинг</h3>
-                    <p>Камера высокого разрешения + мобильное приложение. Контролируйте печать из любой точки.</p>
-                </div>
-                <div class="swiper-slide">
-                    <i class="fas fa-layer-group"></i>
-                    <h3>Высокая скорость</h3>
-                    <p>До 200 мм/с без потери качества, благодаря жесткой раме и 32-бит логике.</p>
-                </div>
-                <div class="swiper-slide">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Прочная конструкция</h3>
-                    <p>Алюминиевые профили, закаленные направляющие — надежность на годы.</p>
-                </div>
-                <div class="swiper-slide">
-                    <i class="fas fa-plug"></i>
-                    <h3>Экосистема PICASO</h3>
-                    <p>ПО для слайсинга с AI-поддержкой и библиотека готовых профилей.</p>
-                </div>
-                <div class="swiper-slide">
-                    <i class="fas fa-cogs"></i>
-                    <h3>Замена сопел за секунды</h3>
-                    <p>Быстросъемный хотэнд для разных диаметров (0.2 – 1.0 мм).</p>
-                </div>
+                <div class="swiper-slide"><i class="fas fa-brain"></i><h3>Интеллектуальная калибровка</h3><p>Автоматическое выравнивание стола и сенсор первой печати — 100% успешных стартов.</p></div>
+                <div class="swiper-slide"><i class="fas fa-wifi"></i><h3>Умный мониторинг</h3><p>Камера высокого разрешения + мобильное приложение. Контролируйте печать из любой точки.</p></div>
+                <div class="swiper-slide"><i class="fas fa-layer-group"></i><h3>Высокая скорость</h3><p>До 200 мм/с без потери качества, благодаря жесткой раме и 32-бит логике.</p></div>
+                <div class="swiper-slide"><i class="fas fa-shield-alt"></i><h3>Прочная конструкция</h3><p>Алюминиевые профили, закаленные направляющие — надежность на годы.</p></div>
+                <div class="swiper-slide"><i class="fas fa-plug"></i><h3>Экосистема PICASO</h3><p>ПО для слайсинга с AI-поддержкой и библиотека готовых профилей.</p></div>
+                <div class="swiper-slide"><i class="fas fa-cogs"></i><h3>Замена сопел за секунды</h3><p>Быстросъемный хотэнд для разных диаметров (0.2 – 1.0 мм).</p></div>
             </div>
             <div class="swiper-pagination"></div>
             <div class="swiper-button-next"></div>
@@ -494,7 +434,6 @@
     </div>
 </section>
 
-<!-- Технологии и инновации -->
 <section id="tech">
     <div class="container tech-showcase">
         <div class="tech-text">
@@ -516,7 +455,6 @@
     </div>
 </section>
 
-<!-- Контакты и форма связи -->
 <section id="contact">
     <div class="container">
         <div class="cta">
@@ -543,133 +481,55 @@
     <p style="margin-top: 0.5rem;"><i class="fas fa-print"></i> Сделано для инженеров будущего</p>
 </footer>
 
-<!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-    // Инициализация слайдера Swiper
     const swiper = new Swiper('.mySwiper', {
-        slidesPerView: 1,
-        spaceBetween: 20,
-        loop: true,
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-        breakpoints: {
-            640: {
-                slidesPerView: 2,
-                spaceBetween: 25,
-            },
-            1024: {
-                slidesPerView: 3,
-                spaceBetween: 30,
-            },
-        },
-        autoplay: {
-            delay: 4000,
-            disableOnInteraction: false,
-        },
+        slidesPerView: 1, spaceBetween: 20, loop: true,
+        pagination: { el: '.swiper-pagination', clickable: true },
+        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+        breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
+        autoplay: { delay: 4000, disableOnInteraction: false },
     });
 
-    // Мобильное меню
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('navLinks');
-    const navLinkItems = document.querySelectorAll('.nav-link');
-
     menuToggle.addEventListener('click', () => {
         navLinks.classList.toggle('active');
-        // иконка смена (для красоты)
         const icon = menuToggle.querySelector('i');
-        if (navLinks.classList.contains('active')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-        } else {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-times');
     });
 
-    // Закрывать меню при клике на ссылку
-    navLinkItems.forEach(link => {
-        link.addEventListener('click', (e) => {
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
             navLinks.classList.remove('active');
             const icon = menuToggle.querySelector('i');
-            icon.classList.remove('fa-times');
             icon.classList.add('fa-bars');
-            // Активная ссылка подсветка
-            navLinkItems.forEach(l => l.classList.remove('active'));
-            link.classList.add('active');
+            icon.classList.remove('fa-times');
         });
     });
 
-    // Плавный скролл для якорей + подсветка активного пункта при скролле
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
-            if (href === "#" || href === "") return;
+            if (href === "#" || href === "" || href.includes('joke-page')) return;
             const target = document.querySelector(href);
             if (target) {
                 e.preventDefault();
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                // обновить url без резкого прыжка
-                history.pushState(null, null, href);
+                target.scrollIntoView({ behavior: 'smooth' });
             }
         });
     });
 
-    // Подсветка навигации при скролле
-    const sections = document.querySelectorAll('section, .hero');
-    window.addEventListener('scroll', () => {
-        let current = '';
-        const scrollPos = window.scrollY + 120;
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-                current = section.getAttribute('id');
-            }
-        });
-        navLinkItems.forEach(link => {
-            link.classList.remove('active');
-            const href = link.getAttribute('href').substring(1);
-            if (href === current) {
-                link.classList.add('active');
-            }
-        });
-        if (current === '') {
-            // если в самом верху (home)
-            if (window.scrollY < 100) {
-                document.querySelector('.nav-link[href="#home"]').classList.add('active');
-            }
-        }
-    });
-
-    // Простая отправка формы (имитация)
     const contactForm = document.getElementById('contactForm');
     const formMessage = document.getElementById('formMessage');
-    if(contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            formMessage.innerHTML = '<i class="fas fa-check-circle"></i> Спасибо! Наш менеджер свяжется с вами в ближайшее время.';
-            formMessage.style.color = '#a3ffb3';
-            contactForm.reset();
-            setTimeout(() => {
-                formMessage.innerHTML = '';
-            }, 5000);
-        });
-    }
-
-    // Небольшой эффект появления при загрузке
-    window.addEventListener('load', () => {
-        document.body.style.opacity = '0';
-        document.body.style.transition = 'opacity 0.5s ease';
-        document.body.style.opacity = '1';
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        formMessage.innerHTML = '<i class="fas fa-check-circle"></i> Спасибо! Наш менеджер свяжется с вами.';
+        formMessage.style.color = '#a3ffb3';
+        contactForm.reset();
+        setTimeout(() => formMessage.innerHTML = '', 5000);
     });
-    document.body.style.opacity = '1';
 </script>
 </body>
 </html>
